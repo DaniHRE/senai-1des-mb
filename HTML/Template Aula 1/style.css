@@ -1,0 +1,150 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    height: 100%;
+}
+
+body {
+    min-height: 100%;
+}
+
+.nav {
+    border: solid 1px black;
+    width: auto;
+    height: 60px;
+    position: static;
+    background-color: black;
+}
+
+.container {
+    margin: 5%;
+    border: 3px solid green;
+    align-items: center;
+    justify-content: center;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+}
+
+.align {
+    padding-bottom: 5px;
+}
+
+.img {
+    height: 300px;
+    background-image: url(https://images.unsplash.com/photo-1501785888041-af3ef285b470?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8Nnx8fGVufDB8fHx8&w=1000&q=80);
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+
+.content {
+    text-align: left;
+    padding: 0px 20px 0px 20px;
+    display: flex;
+}
+
+.text-dispose {
+    text-align: left;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-dispose .title {
+    background-color: orange;
+    text-align: center;
+    padding: 10px 10px 10px 10px;
+    margin-left: 1%;
+    margin-right: 1%;
+    min-width: 60px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.text-dispose .separate {
+    display: flex;
+    justify-content: space-between;
+}
+
+.text-dispose .separate .title {
+    background-color: #ffa500;
+    padding: 10px 10px 10px 10px;
+    min-width: 60px;
+    font-size: 16px;
+    text-align: center;
+}
+
+.text {
+    margin: 0px 10px 10px 10px;
+    padding: 2%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.line {
+    margin: 10px 50px 10px 50px;
+    border-bottom: solid 1.5px #808080;
+}
+
+.button-dispose {
+    text-align: left;
+    padding: 0px 20px 10px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.button-dispose button {
+    border-radius: 4px;
+    background-color: #ffa500;
+    border: none;
+    color: #FFFFFF;
+    font-size: 16px;
+    text-align: center;
+    padding: 20px;
+    width: 150px;
+    cursor: pointer;
+    margin: 5px;
+}
+
+.button-dispose button span:after {
+    content: '\00bb';
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    right: -20px;
+    transition: 0.5s;
+}
+
+.button-dispose button span {
+    cursor: pointer;
+    display: inline-block;
+    position: relative;
+    transition: 0.5s;
+}
+
+.button-dispose button:hover span {
+    padding-right: 25px;
+}
+
+.button-dispose button:hover span:after {
+    opacity: 1;
+    right: 0;
+}
+
+footer {
+    color: #ffffff;
+    line-height: 50px;
+    padding: 0 20px;
+}
+
+.footer {
+    position: relative;
+    left: 0;
+    bottom: 0;
+    background: #42A5F5;
+    color: #ffffff;
+    text-align: center;
+}
