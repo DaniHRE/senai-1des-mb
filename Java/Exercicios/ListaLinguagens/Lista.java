@@ -1,84 +1,120 @@
 import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.security.DigestException;
 
-public class Lista extends JFrame{
+public class DesafioJList1 extends JFrame implements ActionListener {
 
-    public Lista() {
-        super("Lista de Linguagens");
+    public static void main(String[] args) { new DesafioJList1();}
 
-        Container painel = new JPanel();
+    JList<String> contentList;
+    JList<String> knowList;
+    DefaultListModel<String> firstList;
+    DefaultListModel<String> chosenList;
 
-        Container botoes = new JPanel();
-        botoes.setLayout(new GridLayout(2,1));
+    public DesafioJList1(){
+        super("list1:");
+        //create jpanel
+        Container panel = new JPanel();
+        Container listPanel = new JPanel();
+        Container buttons = new JPanel();
+        Container conteudo = getContentPane();
 
-        Container resetar = new JPanel();
-        resetar.setLayout(new GridLayout(1,1));
+        //Layout
+        panel.setLayout(new FlowLayout());
+        listPanel.setLayout(new GridBagLayout());
+        GridBagConstraints constraints = new GridBagConstraints();
+        constraints.insets = new Insets(10, 15, 10, 15);
+        buttons.setLayout(new GridLayout(2, 1, 1, 5));
 
-        Container container = getContentPane();
-        container.setLayout(new GridLayout(3,1));
+        JLabel description = new JLabel("choose fafers", SwingConstants.CENTER);
+        description.setPreferredSize(new Dimension(400, 50));
 
-        JLabel header = new JLabel("Selecione as Linguagens");
-
-        DefaultListModel<String> listaUm = new DefaultListModel<>();
-        listaUm.addElement("Primeiro");
-        listaUm.addElement("Segundo");
-        listaUm.addElement("Terceiro");
-        JList<String> listaEsquerda = new JList<>(listaUm);
-        listaEsquerda.setPreferredSize(new Dimension(200, 200));
-
-        DefaultListModel<String> listaDois = new DefaultListModel<>();
-        JList<String> listaDireita = new JList<>(listaDois);
-        listaDireita.setPreferredSize(new Dimension(200, 200));
-
-        JButton passarDireita = new JButton(">>");
-        passarDireita.setSize(20,20);
-        passarDireita.addActionListener(new ActionListener() {
+        JButton reset = new JButton("Reset");
+        reset.setPreferredSize(new Dimension(100, 50));
+        reset.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                System.out.println("Passa pra direita, acionado.");
+                if(e.getActionCommand().equals("Reset")){
+                    loadList();
+                }
             }
         });
-        botoes.add(passarDireita);
 
-        JButton passarEsquerda = new JButton("<<");
-        passarEsquerda.setSize(20,20);
-        passarEsquerda.addActionListener(new ActionListener() {
+        JButton buttonAdd = new JButton(">>");
+        buttonAdd.setPreferredSize(new Dimension(100, 20));
+        buttonAdd.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Passa pra esquerda, acionado");
+            public void actionPerformed(ActionEvent f) {
+                if(f.getActionCommand().equals(">>")){
+                    String value = contentList.getSelectedValue();
+                    System.out.println(value);
+
+                    chosenList.addElement(value);
+                    firstList.removeElement(value);
+                }
             }
         });
-        botoes.add(passarEsquerda);
 
-        painel.add(listaEsquerda);
-        painel.add(botoes);
-        painel.add(listaDireita);
-
-        JButton resetButton = new JButton("Resetar");
-        resetButton.setSize(20,20);
-        resetButton.addActionListener(new ActionListener() {
+        JButton removeButton = new JButton("<<");
+        removeButton.setPreferredSize(new Dimension(100, 20));
+        removeButton.addActionListener(new ActionListener() {
             @Override
-            public void actionPerformed(ActionEvent e) {
-                System.out.println("Botão Selecionado.");
+            public void actionPerformed(ActionEvent g) {
+                if(g.getActionCommand().equals("<<")){
+                    String value = knowList.getSelectedValue();
+                    System.out.println(value);
+
+                    firstList.addElement(value);
+                    chosenList.removeElement(value);
+                }
             }
         });
-        resetar.add(resetButton);
 
-        container.add(header);
-        container.add(painel);
-        container.add(resetar);
+        buttons.add(buttonAdd, BorderLayout.SOUTH);
+        buttons.add(removeButton, BorderLayout.NORTH);
 
+        firstList = new DefaultListModel<>();
+        chosenList = new DefaultListModel<>();
+
+        contentList = new JList<>(firstList);
+        contentList.setBackground(Color.gray);
+
+        knowList = new JList<>(chosenList);
+        knowList.setBackground(Color.green);
+
+        loadList();
+
+        contentList.setBounds(250, 100, 75, 75 );
+        contentList.setPreferredSize(new Dimension (200,200));
+        knowList.setBounds(250, 100, 75, 75);
+        knowList.setPreferredSize(new Dimension (200,200));
+
+        panel.add(description);
+        listPanel.add(contentList, constraints);
+        listPanel.add(buttons, constraints);
+        listPanel.add(knowList, constraints);
+        panel.add(listPanel);
+        panel.add(reset);
+
+        conteudo.add(panel);
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        setSize(600, 600);
         setVisible(true);
-        setSize(600, 400);
-        setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
 
-    public static void main(String[] args) {
-        new Lista();
+    private void loadList() {
+        chosenList.removeAllElements();
+        firstList.removeAllElements();
+        firstList.addElement("C#");
+        firstList.addElement("Python");
+        firstList.addElement("Java");
+        firstList.addElement("Javascript");
+
     }
 
+    @Override
+    public void actionPerformed(ActionEvent evento) {
+
+    }
 }
